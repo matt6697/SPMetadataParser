@@ -1,5 +1,15 @@
 {
     "require": {
         "simplesamlphp/simplesamlphp": "^1.17"
+    },
+    "autoload": {
+      "psr-4": {
+        "Saml2\\": "src/"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Tests\\Saml2\\": "tests/"
+      }
     }
 }
