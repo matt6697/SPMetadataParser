@@ -20,3 +20,9 @@ https://wiki.shibboleth.net/confluence/display/SHIB2/IdPUnderstandingRP
 
 
 ## Webservice architecture
+
+## Administrative actions
+**Clear the API Platform cache**
+```
+php bin/console cache:clear
+```
