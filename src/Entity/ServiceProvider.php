@@ -14,7 +14,14 @@ use App\Dto\ServiceProviderOutput;
 /**
  * @ORM\Entity
  * @ApiResource(
- *   input=ServiceProviderInput::class
+ *   input=ServiceProviderInput::class,
+ *   formats={"jsonld", "csv"={"text/csv"}},
+ *   collectionOperations={
+ *     "get"={
+ *       "output_formats"={"myformat"}
+ *      },
+ *     "post"
+ *   }
  * )
  */
 final class ServiceProvider {

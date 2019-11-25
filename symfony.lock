@@ -88,6 +88,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "lightsaml/lightsaml": {
+        "version": "1.4.1"
+    },
     "nelmio/cors-bundle": {
         "version": "1.5",
         "recipe": {
@@ -99,6 +102,9 @@
         "files": [
             "config/packages/nelmio_cors.yaml"
         ]
+    },
+    "nikic/php-parser": {
+        "version": "v4.3.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"
@@ -254,6 +260,18 @@
     "symfony/debug": {
         "version": "v4.3.8"
     },
+    "symfony/debug-bundle": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "f8863cbad2f2e58c4b65fa1eac892ab189971bea"
+        },
+        "files": [
+            "config/packages/dev/debug.yaml"
+        ]
+    },
     "symfony/dependency-injection": {
         "version": "v4.3.8"
     },
@@ -317,6 +335,15 @@
     },
     "symfony/inflector": {
         "version": "v4.3.8"
+    },
+    "symfony/maker-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
     },
     "symfony/mime": {
         "version": "v4.3.8"
@@ -416,6 +443,9 @@
             "config/packages/test/validator.yaml",
             "config/packages/validator.yaml"
         ]
+    },
+    "symfony/var-dumper": {
+        "version": "v4.3.8"
     },
     "symfony/var-exporter": {
         "version": "v4.3.8"

@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "api-platform/api-pack": "^1.2",
+        "lightsaml/lightsaml": "^1.4",
         "simplesamlphp/simplesamlphp": "^1.18",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
@@ -14,7 +15,9 @@
         "symfony/yaml": "4.3.*"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.14"
+        "symfony/debug-bundle": "4.3.*",
+        "symfony/maker-bundle": "^1.14",
+        "symfony/var-dumper": "4.3.*"
     },
     "config": {
         "preferred-install": {
