@@ -1,4 +1,14 @@
 api_platform:
+    # The title of the API.
+    title: 'SPMetadataAPI'
+
+    # The description of the API.
+    description: 'SAML2 service provider metadata registration API for a Shibboleth federation.'
+
+    # The version of the API.
+    version: '0.1.0'
+
+    # The list of enabled formats. The first one will be the default.
     formats:
       jsonld:   ['application/ld+json']
       jsonhal:  ['application/hal+json']

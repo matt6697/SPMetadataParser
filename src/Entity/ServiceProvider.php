@@ -13,15 +13,12 @@ use App\Dto\ServiceProviderOutput;
 
 /**
  * @ORM\Entity
+ * @UniqueEntity("entityId") //entityId has to be unique
  * @ApiResource(
  *   input=ServiceProviderInput::class,
  *   formats={"jsonld", "csv"={"text/csv"}},
- *   collectionOperations={
- *     "get"={
- *       "output_formats"={"myformat"}
- *      },
- *     "post"
- *   }
+ *   collectionOperations={"get","post"},
+ *   itemOperations={"get", "delete"}
  * )
  */
 final class ServiceProvider {
