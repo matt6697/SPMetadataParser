@@ -17,4 +17,16 @@ final class ServiceProviderInput {
    * )
    */
   public $metadata_url;
+
+  /**
+   * @ApiProperty(
+   *     attributes={
+   *         "openapi_context"={
+   *             "type"="string",
+   *             "example"="itservices01.stanford.edu"
+   *         }
+   *     }
+   * )
+   */
+  public $shibboleth_host;
 }

@@ -16,16 +16,21 @@ final class ServiceProviderInputDataTransformer implements DataTransformerInterf
     if(isset($data->metadata_url)) {
       $metadata_xml_string = $this->parseUrl($data->metadata_url);
     }
+    else if(isset($data->shibboleth_host)) {
+      $metadata_xml_string = $this->parseShibbolethHost($data->shibboleth_host);
+    }
 
-    $metadata = $this->parseXmlString($metadata_xml_string);
+    if(isset($metadata_xml_string)) {
+      $metadata = $this->parseXmlString($metadata_xml_string);
 
-    if(isset($metadata)) {
-      $sp = new ServiceProvider();
-      $sp->entityId = $metadata->getEntityId();
-      $sp->metadata_xml_string = $metadata_xml_string;
-      return $sp;
-    } else {
-      return null;
+      if(isset($metadata)) {
+        $sp = new ServiceProvider();
+        $sp->entityId = $metadata->getEntityId();
+        $sp->metadata_xml_string = $metadata_xml_string;
+        return $sp;
+      } else {
+        return null;
+      }
     }
   }
 
@@ -47,7 +52,7 @@ final class ServiceProviderInputDataTransformer implements DataTransformerInterf
   }
 
   private function parseShibbolethHost($hostname) {
-    return \SimpleSAML\Utils\HTTP::fetch("https://$hostname/Shibboleth.sso/Metadata");
+    return \SimpleSAML\Utils\HTTP::fetch("https://".$hostname."/Shibboleth.sso/Metadata");
   }
 
   private function parseXmlString($xml_string) {

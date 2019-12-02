@@ -9,5 +9,8 @@ RUN rm /var/www/html/index.html \
     && mv /var/www/html/apache2/000-default.conf /etc/apache2/sites-available/ \
     && a2enmod headers rewrite
 
+#allow SSL connections with protocol < TLS1.2
+RUN sed -i '355,355 s/ssl_conf/#ssl_conf/' /etc/ssl/openssl.cnf
+
 EXPOSE 80
 CMD apachectl -D FOREGROUND
