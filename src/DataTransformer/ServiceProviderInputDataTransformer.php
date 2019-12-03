@@ -5,6 +5,7 @@ namespace App\DataTransformer;
 
 use ApiPlatform\Core\DataTransformer\DataTransformerInterface;
 use App\Entity\ServiceProvider;
+use App\Exception\MetadataNotFoundException;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils\HTTP;
 
@@ -20,17 +21,19 @@ final class ServiceProviderInputDataTransformer implements DataTransformerInterf
       $metadata_xml_string = $this->parseShibbolethHost($data->shibboleth_host);
     }
 
-    if(isset($metadata_xml_string)) {
+    if(isset($metadata_xml_string) && simplexml_load_string($metadata_xml_string)) {
       $metadata = $this->parseXmlString($metadata_xml_string);
 
-      if(isset($metadata)) {
+      if(isset($metadata) && $metadata !== '') {
         $sp = new ServiceProvider();
         $sp->entityId = $metadata->getEntityId();
         $sp->metadata_xml_string = $metadata_xml_string;
         return $sp;
       } else {
-        return null;
+        throw new MetadataNotFoundException('No valid SAML2 Metadata found at the provided location.');
       }
+    } else {
+      throw new MetadataNotFoundException('No valid XML data found at the provided location.');
     }
   }
 
@@ -48,11 +51,19 @@ final class ServiceProviderInputDataTransformer implements DataTransformerInterf
   }
 
   private function parseUrl($url) {
-    return \SimpleSAML\Utils\HTTP::fetch($url);
+    try {
+      return \SimpleSAML\Utils\HTTP::fetch($url);
+    } catch (\SimpleSAML\Error\Exception $e) {
+      throw new MetadataNotFoundException(sprintf('The provided hostname %s is not a valid SAML2 Service Provider.', $hostname));
+    }
   }
 
   private function parseShibbolethHost($hostname) {
-    return \SimpleSAML\Utils\HTTP::fetch("https://".$hostname."/Shibboleth.sso/Metadata");
+    try {
+      return \SimpleSAML\Utils\HTTP::fetch("https://".$hostname."/Shibboleth.sso/Metadata");
+    } catch (\SimpleSAML\Error\Exception $e) {
+      throw new MetadataNotFoundException(sprintf('The provided hostname %s is not a valid Shibboleth Service Provider.', $hostname));
+    }
   }
 
   private function parseXmlString($xml_string) {

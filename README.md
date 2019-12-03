@@ -25,6 +25,17 @@ $ bin/console doctrine:database:create
 $ bin/console doctrine:schema:create
 ```
 
+### API Usage
+#### Registering a Shibboleth Service Provider
+
+#### Registering a Non-Shibboleth SAML2 Service Provider
+The URL of the SAML2 Service Provider Metadata endpoint is used for registration.
+This URL may vary depending on the SAML2 service provider technology.
+
+```
+curl -X POST "https://<fqdn>/api/service_providers" -H  "accept: application/ld+json" -H  "Content-Type: application/ld+json" -d "{\"metadata_url\":\"https://itservices01.stanford.edu/Shibboleth.sso/Metadata\"}"
+```
+
 ## Shibboleth 2 documentation
 ### Type of Relying Parties
 In nearly all cases an IdP communicates with a service provider. However, in some more advanced cases an IdP may communicate with other entities (like other IdPs). The IdP configuration uses the generic term relying party to describe any peer with which it communicates. A service provider, then, is simply the most common type of relying party.
@@ -37,6 +48,7 @@ The IdP recognizes three classifications of relying parties:
   The configuration for each type of relying party is given by their respective configuration elements: `<AnonymousRelyingParty>`, `<DefaultRelyingParty>`, and `<RelyingParty>`.
 Clone the git repository and run `composer install`.
 Additionnal PHP modules might be required (curl, mbstring, xml,...) by composer before installing Symfony
+
 ### Metadata and Relying Parties
 The IdP uses metadata to drive a significant portion of its internal communication logic with a relying party. The metadata contains information such as what keys to use, whether certain information needs to be digitally signed, which protocols are supported, etc. A relying party is identified within metadata by an <EntityDescriptor> element with an entityID attribute whose value corresponds to the relying party's entity ID. Entities may be grouped within an <EntitiesDescriptor> element and this group may be given a name by means of the name attribute. Entity groups may be nested.
 

@@ -21,7 +21,7 @@ use App\Dto\ServiceProviderOutput;
  *   itemOperations={"get", "delete"}
  * )
  */
-final class ServiceProvider {
+class ServiceProvider {
   /**
    * @var int The id of this service provider.
    *
