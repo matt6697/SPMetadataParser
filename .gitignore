@@ -7,4 +7,3 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-!/vendor/simplesamlphp/simplesamlphp/config/config.php

@@ -6,8 +6,8 @@ namespace App\DataTransformer;
 use ApiPlatform\Core\DataTransformer\DataTransformerInterface;
 use App\Entity\ServiceProvider;
 use App\Exception\MetadataNotFoundException;
-use SimpleSAML\Metadata\SAMLParser;
-use SimpleSAML\Utils\HTTP;
+use LightSaml\Model\Context\DeserializationContext;
+use LightSaml\Model\Metadata\Metadata;
 
 final class ServiceProviderInputDataTransformer implements DataTransformerInterface
 {  /**
@@ -52,21 +52,22 @@ final class ServiceProviderInputDataTransformer implements DataTransformerInterf
 
   private function parseUrl($url) {
     try {
-      return \SimpleSAML\Utils\HTTP::fetch($url);
-    } catch (\SimpleSAML\Error\Exception $e) {
+      return file_get_contents($url);
+    } catch (\Exception $e) {
       throw new MetadataNotFoundException(sprintf('The provided hostname %s is not a valid SAML2 Service Provider.', $hostname));
     }
   }
 
   private function parseShibbolethHost($hostname) {
     try {
-      return \SimpleSAML\Utils\HTTP::fetch("https://".$hostname."/Shibboleth.sso/Metadata");
-    } catch (\SimpleSAML\Error\Exception $e) {
+      return file_get_contents("https://".$hostname."/Shibboleth.sso/Metadata");
+    } catch (\Exception $e) {
       throw new MetadataNotFoundException(sprintf('The provided hostname %s is not a valid Shibboleth Service Provider.', $hostname));
     }
   }
 
   private function parseXmlString($xml_string) {
-    return \SimpleSAML\Metadata\SAMLParser::parseString($xml_string);
+    $deserializatonContext = new DeserializationContext();
+    return \LightSaml\Model\Metadata\Metadata::fromXML($xml_string, $deserializatonContext);
   }
 }

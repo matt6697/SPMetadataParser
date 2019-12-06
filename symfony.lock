@@ -79,12 +79,6 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
-    "gettext/gettext": {
-        "version": "v4.8.1"
-    },
-    "gettext/languages": {
-        "version": "2.6.0"
-    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -115,12 +109,6 @@
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
     },
-    "phpfastcache/riak-client": {
-        "version": "3.4.3"
-    },
-    "phpmailer/phpmailer": {
-        "version": "v6.1.2"
-    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -135,102 +123,6 @@
     },
     "robrichards/xmlseclibs": {
         "version": "3.0.4"
-    },
-    "simplesamlphp/composer-module-installer": {
-        "version": "v1.1.6"
-    },
-    "simplesamlphp/saml2": {
-        "version": "v4.1.1"
-    },
-    "simplesamlphp/simplesamlphp": {
-        "version": "v1.18.0"
-    },
-    "simplesamlphp/simplesamlphp-module-adfs": {
-        "version": "v0.9.4"
-    },
-    "simplesamlphp/simplesamlphp-module-authcrypt": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-authfacebook": {
-        "version": "v0.9.1"
-    },
-    "simplesamlphp/simplesamlphp-module-authorize": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-authtwitter": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-authwindowslive": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-authx509": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-authyubikey": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-cas": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-cdc": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-consent": {
-        "version": "v0.9.3"
-    },
-    "simplesamlphp/simplesamlphp-module-consentadmin": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-discopower": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-exampleattributeserver": {
-        "version": "v1.0.0"
-    },
-    "simplesamlphp/simplesamlphp-module-expirycheck": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-ldap": {
-        "version": "v0.9.3"
-    },
-    "simplesamlphp/simplesamlphp-module-memcachemonitor": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-memcookie": {
-        "version": "v1.2.2"
-    },
-    "simplesamlphp/simplesamlphp-module-metarefresh": {
-        "version": "v0.9.1"
-    },
-    "simplesamlphp/simplesamlphp-module-negotiate": {
-        "version": "v0.9.4"
-    },
-    "simplesamlphp/simplesamlphp-module-oauth": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-preprodwarning": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-radius": {
-        "version": "v0.9.3"
-    },
-    "simplesamlphp/simplesamlphp-module-riak": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-sanitycheck": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-smartattributes": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-sqlauth": {
-        "version": "v0.9.0"
-    },
-    "simplesamlphp/simplesamlphp-module-statistics": {
-        "version": "v0.9.3"
-    },
-    "simplesamlphp/twig-configurable-i18n": {
-        "version": "v2.2"
     },
     "symfony/asset": {
         "version": "v4.3.8"
@@ -456,26 +348,11 @@
     "symfony/yaml": {
         "version": "v4.3.8"
     },
-    "twig/extensions": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "a86723ee8d8b2f9437c8ce60a5546a1c267da5ed"
-        },
-        "files": [
-            "config/packages/twig_extensions.yaml"
-        ]
-    },
     "twig/twig": {
         "version": "v2.12.2"
     },
     "webmozart/assert": {
         "version": "1.5.0"
-    },
-    "whitehat101/apr1-md5": {
-        "version": "v1.0.0"
     },
     "willdurand/negotiation": {
         "version": "v2.3.1"
