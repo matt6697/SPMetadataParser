@@ -13,7 +13,7 @@ SPMetadataParser support multiple database backends :
 Install the choosen PHP database module and configure database access in `.env` file.
 
 SPMetadataParser is configured by default to use a SQlite database stored in `%kernel.project_dir%/var/metadata.db`.
-`
+
 ```
 DATABASE_URL=sqlite:///%kernel.project_dir%/var/metadata.db  
 ```
@@ -25,16 +25,41 @@ $ bin/console doctrine:database:create
 $ bin/console doctrine:schema:create
 ```
 
+### Administrative actions
+#### Clear the API Platform cache
+The Api Platform cache can be cleared using the following Symfony 4 console command :
+```
+php bin/console cache:clear
+```
+
 ### API Usage
 #### Registering a Shibboleth Service Provider
+The **FQDN** of the Shibboleth Service Provider Metadata endpoint is used for registration. Webservice will automatically construct the URL of the Shibboleth Service Provider metadata endpoint `https://<FQDN>/Shibboleth.sso/Metadata`
+
+```
+curl -X POST "http://<webservice>/api/service_providers" \
+     -H  "accept: application/ld+json" \
+     -H  "Content-Type: application/ld+json" \
+     -d "{\"shibboleth_host\":\"itservices01.stanford.edu\"}"
+```
 
 #### Registering a Non-Shibboleth SAML2 Service Provider
-The URL of the SAML2 Service Provider Metadata endpoint is used for registration.
+The **URL** of the SAML2 Service Provider Metadata endpoint is used for registration.
 This URL may vary depending on the SAML2 service provider technology.
 
 ```
-curl -X POST "https://<fqdn>/api/service_providers" -H  "accept: application/ld+json" -H  "Content-Type: application/ld+json" -d "{\"metadata_url\":\"https://itservices01.stanford.edu/Shibboleth.sso/Metadata\"}"
+curl -X POST "https://<webservice>/api/service_providers" \
+     -H  "accept: application/ld+json" \
+     -H  "Content-Type: application/ld+json" \
+     -d "{\"metadata_url\":\"https://itservices01.stanford.edu/Shibboleth.sso/Metadata\"}"
 ```
+
+#### Backward compatibility
+SHibboleth only service providers can be registered using the **/shib?sp=<fqdn>** API endpoint. This API endpoint is *deprecated** and has been included for backward compatibility only. It will be removed in the next major release.
+```
+curl -v http://localhost:8000/api/shib?sp=itservices01.stanford.edu
+```
+
 
 ## Shibboleth 2 documentation
 ### Type of Relying Parties
@@ -55,12 +80,3 @@ The IdP uses metadata to drive a significant portion of its internal communicati
 When creating a specified relying party configuration you may specify either a specific entity or a group of entities. In that event that there is overlap the most specific configuration is used, no settings are "inherited" because of this overlap. As was mentioned above, a relying party for which the IdP can find no metadata is termed an anonymous relying party.
 
 https://wiki.shibboleth.net/confluence/display/SHIB2/IdPUnderstandingRP
-
-
-## Webservice architecture
-
-## Administrative actions
-**Clear the API Platform cache**
-```
-php bin/console cache:clear
-```

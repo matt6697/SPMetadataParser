@@ -17,8 +17,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Entity\LegacyServiceProvider;
 use App\Entity\ServiceProvider;
-use \App\Dto\ServiceProviderInput;
+use App\Dto\ServiceProviderInput;
 use App\DataTransformer\ServiceProviderInputDataTransformer;
+use App\Exception\DuplicateDatabaseEntryException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 final class LegacyServiceProviderCollectionDataProvider implements CollectionDataProviderInterface, RestrictedDataProviderInterface {
   private $requestStack;
@@ -41,12 +43,18 @@ final class LegacyServiceProviderCollectionDataProvider implements CollectionDat
       //Create a new service provider object from query parameter
       $sp_input_dto = new \App\Dto\ServiceProviderInput();
       $sp_input_dto->shibboleth_host = $hostname;
+
       $sp = (new \App\DataTransformer\ServiceProviderInputDataTransformer())->transform($sp_input_dto, "");
 
-      //Save service provider in database which will autogenerate the ServiceProvider $id
-      $this->entityManager->persist($sp);
-      $this->entityManager->flush();
-
+      try {
+        //Save service provider in database which will autogenerate the ServiceProvider $id
+        $this->entityManager->persist($sp);
+        $this->entityManager->flush();
+      }
+      catch (\Doctrine\DBAL\Exception\UniqueConstraintViolationException $e) {
+        throw new DuplicateDatabaseEntryException('The service provider, or a service provider with the same SAML2 entityID, is already registered.');
+      }
+      
       //Return an array containing the created service provider
       return [$sp];
     }

@@ -36,3 +36,4 @@ api_platform:
 
         #Custom mapping
         App\Exception\MetadataNotFoundException: 404
+        App\Exception\DuplicateDatabaseEntryException: 400
