@@ -1,8 +1,11 @@
 # SPMetadataAPI
 ## Introduction
-SPMetadataAPI is a SAML2 metadata aggregation webservice based on API Platform :
- * Providing SAML2 service provider registration capabilities.
- * Acting a remote SAML2 metadata HTTP server for Shibboleth identity providers.
+SPMetadataAPI is a SAML2 federation operator webservice based on API Platform and LightSAML PHP library:
+ * Providing SAML2 **metadata registration** capabilities.
+ * Validating SAML2 metadata structure using LightSAML parser.
+ * Acting a SAML2 **metadata aggregator** HTTP server for Shibboleth identity providers.
+
+ ![SAML2 service provider resgistration](doc/images/metadataoperator.jpg)
 
 ## Getting started
 ### Installation
