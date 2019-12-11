@@ -18,7 +18,7 @@ api_platform:
       yaml:     ['application/x-yaml']
       csv:      ['text/csv']
       html:     ['text/html']
-      myformat: ['application/xml']
+      saml2ed:  ['application/xml']
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:

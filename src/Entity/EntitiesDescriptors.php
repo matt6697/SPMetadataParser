@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ApiResource(
  *     collectionOperations={
  *       "get"={
- *         "output_formats"={"myformat"}
+ *         "output_formats"={"saml2ed"}
  *        }
  *     },
  *     itemOperations={}
