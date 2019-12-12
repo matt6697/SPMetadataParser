@@ -21,6 +21,9 @@ final class ServiceProviderInputDataTransformer implements DataTransformerInterf
       $metadata_xml_string = $this->parseShibbolethHost($data->shibboleth_host);
     }
 
+    //Tell simplexml_load_string to return false but not throw error when $metadata_xml_string is not a valid XML file
+    libxml_use_internal_errors(true);
+
     if(isset($metadata_xml_string) && simplexml_load_string($metadata_xml_string)) {
       $metadata = $this->parseXmlString($metadata_xml_string);
 
@@ -54,7 +57,7 @@ final class ServiceProviderInputDataTransformer implements DataTransformerInterf
     try {
       return file_get_contents($url);
     } catch (\Exception $e) {
-      throw new MetadataNotFoundException(sprintf('The provided hostname %s is not a valid SAML2 Service Provider.', $hostname));
+      throw new MetadataNotFoundException(sprintf('The provided hostname %s is not a valid SAML2 Service Provider.', $url));
     }
   }
 
