@@ -42,8 +42,8 @@ The Api Platform cache can be cleared using the following Symfony 4 console comm
 php bin/console cache:clear
 ```
 
-### API Usage
-#### Registering a Shibboleth Service Provider
+## API Usage
+### Registering a Shibboleth Service Provider
 The **FQDN** of the Shibboleth Service Provider Metadata endpoint is used for registration. Webservice will automatically construct the URL of the Shibboleth Service Provider metadata endpoint `https://<FQDN>/Shibboleth.sso/Metadata`
 
 ```
@@ -53,7 +53,7 @@ curl -X POST "http://<webservice>/api/service_providers" \
      -d "{\"shibboleth_host\":\"itservices01.stanford.edu\"}"
 ```
 
-#### Registering a Non-Shibboleth SAML2 Service Provider
+### Registering a Non-Shibboleth SAML2 Service Provider
 The **URL** of the SAML2 Service Provider Metadata endpoint is used for registration.
 This URL may vary depending on the SAML2 service provider technology.
 
@@ -64,7 +64,7 @@ curl -X POST "https://<webservice>/api/service_providers" \
      -d "{\"metadata_url\":\"https://itservices01.stanford.edu/Shibboleth.sso/Metadata\"}"
 ```
 
-#### Backward compatibility
+### Backward compatibility
 SHibboleth only service providers can be registered using the **/shib?sp=<fqdn>** API endpoint. This API endpoint is *deprecated** and has been included for backward compatibility only. It will be removed in the next major release.
 ```
 curl -v http://localhost:8000/api/shib?sp=itservices01.stanford.edu
@@ -72,5 +72,5 @@ curl -v http://localhost:8000/api/shib?sp=itservices01.stanford.edu
 
 ## Additionnal documentation
   * [Webservice architecture](/doc/architecture.md)
-  * [Shibboleth documentation](doc/shibboleth.md)
+  * [Shibboleth integration](doc/shibboleth.md)
   * [OASIS SAML2 metadata specifications](https://www.oasis-open.org/committees/download.php/51890/SAML%20MD%20simplified%20overview.pdf)
