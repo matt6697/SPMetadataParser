@@ -68,3 +68,4 @@ The `Saml2EntitiesDescriptorsEncoder` leverages `LightSaml\Model\Metadata\Entiti
 ## Reference
   * [Using Data Transfer Objects (DTOs)](https://api-platform.com/docs/core/dto/)
   * [Doctrine ORM EntityManager](https://www.doctrine-project.org/api/orm/latest/Doctrine/ORM/EntityManager.html)
+  * [OASIS SAML2 metadata specifications](https://www.oasis-open.org/committees/download.php/51890/SAML%20MD%20simplified%20overview.pdf)

@@ -5,7 +5,10 @@ SPMetadataAPI is a SAML2 federation operator webservice based on API Platform an
  * Validating SAML2 metadata structure using LightSAML parser.
  * Acting a SAML2 **metadata aggregator** HTTP server for Shibboleth identity providers.
 
- ![SAML2 service provider resgistration](doc/images/metadataoperator.jpg)
+ ![SAML2 service provider registration](doc/images/metadataoperator.jpg)
+
+ * [Webservice architecture](/doc/architecture.md)
+ * [Shibboleth integration](doc/shibboleth.md)
 
 ## Getting started
 ### Installation
@@ -64,13 +67,16 @@ curl -X POST "https://<webservice>/api/service_providers" \
      -d "{\"metadata_url\":\"https://itservices01.stanford.edu/Shibboleth.sso/Metadata\"}"
 ```
 
-### Backward compatibility
-SHibboleth only service providers can be registered using the **/shib?sp=<fqdn>** API endpoint. This API endpoint is *deprecated** and has been included for backward compatibility only. It will be removed in the next major release.
+### Backward compatibility registration using GET HTTP request
+Shibboleth-only service providers can be registered using the **/shib?sp=<fqdn>** API endpoint. This API endpoint is *deprecated** and has been included for backward compatibility only. It will be removed in the next major release.
 ```
-curl -v http://localhost:8000/api/shib?sp=itservices01.stanford.edu
+curl https://<webservice>/api/shib?sp=itservices01.stanford.edu
 ```
 
-## Additionnal documentation
-  * [Webservice architecture](/doc/architecture.md)
-  * [Shibboleth integration](doc/shibboleth.md)
-  * [OASIS SAML2 metadata specifications](https://www.oasis-open.org/committees/download.php/51890/SAML%20MD%20simplified%20overview.pdf)
+
+### Gathering the EntitiesDescriptors aggregated XML metadata container
+Aggregated SAML2 Metadata is provided to the Shibboleth IDP accessing the webservice using a [FileBackedHTTPMetadataProvider](shibboleth.md) through the `GET /entities_descriptors` API endpoint.
+
+```
+curl https://<webservice>/api/entities_descriptors
+```
