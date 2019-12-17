@@ -38,7 +38,7 @@ The frequency of metadata refresh is influenced by the Reloading Attributes. In 
 -->
 <MetadataProvider id="RemoteMetadataAggregate" xsi:type="FileBackedHTTPMetadataProvider"
                   backingFile="%{idp.home}/metadata/federation-metadata-copy.xml"
-                  metadataURL="http://example.org/metadata/federation-metadata.xml">
+                  metadataURL="https://<webservice>/api/entities_descriptors">
 
     <!--
         Verify the signature on the root element of the metadata aggregate
@@ -94,7 +94,7 @@ and the following optional attributes:
 <!-- RelyingParty elements above this point -->
 <MetadataProvider xsi:type="FileBackedHTTPMetadataProvider" xmlns="urn:mace:shibboleth:2.0:metadata"
                   id="MyMetadata"
-                  metadataURL="http://example.org/metadata.xml"
+                  metadataURL="https://<webservice>/api/entities_descriptors"
                   backingFile="/tmp/idp-metadata.xml" />
 ```
 

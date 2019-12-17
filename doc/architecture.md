@@ -22,8 +22,8 @@ Shibboleth IDP configuration to use this SAML2 metadata webservice is described 
 
 ## API Platform integration
 ### Registering SAML2 service providers
-#### POST /services_providers request handling
-The `POST /service_providers` endpoint is the main SAML2 Service Provider registration endpoint. Input data is either :
+#### POST /api/services_providers request handling
+The `POST /api/service_providers` endpoint is the main SAML2 Service Provider registration endpoint. Input data is either :
   * A **metadata_url** representing the URL of the service provider metadata endpoint.
   * A **shibboleth_host** representing the fully qualified name (FQDN) of a Shibboleth service provider. In this case, the URL of the service provider metadata endpoint is automatically constructed by the webservice using the `https://<shibboleth_host>/Shibboleth.sso/Metadata` pattern.
 
@@ -37,10 +37,10 @@ The `ServiceProviderInput` class describes the input object. The `ServiceProvide
 
 ![SAML2 service provider registration with POST request](images/post-serviceproviders.jpg)
 
-#### GET /shib?sp=<fqdn> request handling
+#### GET /api/shib?sp=<fqdn> request handling
 **DEPRECATED NOT REST COMPLINANT ENDPOINT, TO BE REMOVED AS SOON AS POSSIBLE**
 
-The `GET /shib?sp=<fqdn>` endpoint is a **legacy** SAML2 Service Provider registration endpoint for bckwrad compatibility with registration scripts not implementing HTTP POST capabilities.
+The `GET /api/shib?sp=<fqdn>` endpoint is a **legacy** SAML2 Service Provider registration endpoint for bckwrad compatibility with registration scripts not implementing HTTP POST capabilities.
 
 This endpoint **voluntarily misuses an API Platform DataProvider** to persist data in database which is mandatory to use a GET request to register a Service Provider (not compliant with REST logic).
 
@@ -54,9 +54,9 @@ The `ServiceProvider` is then persisted in database using a Doctrine ORM `Entity
 ![SAML2 service provider registration with a non REST compliant GET request](images/get-shib.jpg)
 
 ### Gathering the aggregated metadata XML file
-Aggregated SAML2 Metadata is provided to the Shibboleth IDP accessing the webservice using a [FileBackedHTTPMetadataProvider](shibboleth.md) through the `GET /entities_descriptors` API endpoint.
+Aggregated SAML2 Metadata is provided to the Shibboleth IDP accessing the webservice using a [FileBackedHTTPMetadataProvider](shibboleth.md) through the `GET /api/entities_descriptors` API endpoint.
 
-The `GET /entities_descriptors` endpoint serializes the `ServiceProvider` objects extracted from the database by the `EntitiesDescriptorsCollectionDataProvider` sing a Doctrine ORM `EntityManagerInterface` into a custom **saml2ed** API Platform format using the `Saml2EntitiesDescriptorsEncoder`.
+The `GET /api/entities_descriptors` endpoint serializes the `ServiceProvider` objects extracted from the database by the `EntitiesDescriptorsCollectionDataProvider` sing a Doctrine ORM `EntityManagerInterface` into a custom **saml2ed** API Platform format using the `Saml2EntitiesDescriptorsEncoder`.
 
 The `Saml2EntitiesDescriptorsEncoder` leverages `LightSaml\Model\Metadata\EntitiesDescriptor` class to :
   * Build an **EntitiesDescriptors XML container element** containing all the SAML2 metadata EntityDescriptor nodes, each node representing a single SAML2 Service Provider.
