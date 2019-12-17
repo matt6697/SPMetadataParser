@@ -1,0 +1,78 @@
+<!--
+This is example metadata only. Do *NOT* supply it as is without review,
+and do *NOT* provide it in real time to your partners.
+ -->
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" ID="_fa3a767f177512a8190d609d5c265eff19b986d7" entityID="https://itservices01.stanford.edu/shibboleth">
+
+  <md:Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224"/>
+    <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha512"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha384"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha224"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2009/xmldsig11#dsa-sha256"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha1"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+    <alg:SigningMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+  </md:Extensions>
+
+  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol">
+    <md:Extensions>
+      <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://uit.stanford.edu/Shibboleth.sso/Login"/>
+    </md:Extensions>
+    <md:KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:KeyName>itservices01.stanford.edu</ds:KeyName>
+        <ds:X509Data>
+          <ds:X509SubjectName>CN=itservices01.stanford.edu</ds:X509SubjectName>
+          <ds:X509Certificate>MIIDEjCCAfqgAwIBAgIJAN+3kso4SfnwMA0GCSqGSIb3DQEBBQUAMCQxIjAgBgNV
+BAMTGWl0c2VydmljZXMwMS5zdGFuZm9yZC5lZHUwHhcNMTgwNDEzMjExMDE4WhcN
+MjgwNDEwMjExMDE4WjAkMSIwIAYDVQQDExlpdHNlcnZpY2VzMDEuc3RhbmZvcmQu
+ZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArWbW+SzvuWTnXqKK
+PuefHD89rXuEh9oYHWMtY/v4m90yUbOfe5kPJBYidBUhjhZQU0jSB1QdWIDvPHBV
+EqStBquthUYHfPdD1q0ej8l1RmFTYqFiz3QR2wFTFWI0L+CTUwLtneH+mZzdckfl
+DPzw95Pt16w2oBsyl/GWDJFv0eIhkEuNg/E6W4XJcHcgse36TUPt3uBpB8X/zoQa
+l4HNz4pfSdZhPr1Ltq6WLTSa3EcdxtGdr7yAkVhvPaaGd163NRJBLjhzQB8fVnFM
+nhrqiXR6rrbRZskwlGcEeqdhkhneQYl015Tqqa3Xi7wdqV2lzd1LT0InoJakJtMH
+1g2YHQIDAQABo0cwRTAkBgNVHREEHTAbghlpdHNlcnZpY2VzMDEuc3RhbmZvcmQu
+ZWR1MB0GA1UdDgQWBBRweHFUF7fF6QG9CjYb21XgPPCE/zANBgkqhkiG9w0BAQUF
+AAOCAQEABpK18QnMwNi2kBdFfa1+tNg4O+ovJazsBUKe5Ud9opHvNk8/DCfq4zig
+iggquUcLGrr4ubxcQIqvLHQHGbai5866NmjJTUsg+yL8N7zjsVW5qw3NR/j9lr3O
+kmC97AsR9MRBB7uHy16RSCHIoQrgbD/O4PL6OshMSZI+c5EPNCGDCXeIV492kELR
+W3wWFiCh5WBPfvNW6QrlzmLPKR2OpZ4QaKIWpm6lcMdlU2xSTbtAXfB4vTkU8+z/
+jP1mc95u82BsCS6zlc3U7J+ldGIyONtGaHMJ8x2ChVYTmNWIb1xnxYzLBQR6LVNb
+cb9cEGuRsUQNZ3VAHdsDWRfdgbJIpQ==
+</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes128-gcm"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes192-gcm"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#aes256-gcm"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes192-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2009/xmlenc11#rsa-oaep"/>
+      <md:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-oaep-mgf1p"/>
+    </md:KeyDescriptor>
+    <md:ArtifactResolutionService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://uit.stanford.edu/Shibboleth.sso/Artifact/SOAP" index="1"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://uit.stanford.edu/Shibboleth.sso/SLO/SOAP"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://uit.stanford.edu/Shibboleth.sso/SLO/Redirect"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://uit.stanford.edu/Shibboleth.sso/SLO/POST"/>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://uit.stanford.edu/Shibboleth.sso/SLO/Artifact"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://uit.stanford.edu/Shibboleth.sso/SAML2/POST" index="1"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST-SimpleSign" Location="https://uit.stanford.edu/Shibboleth.sso/SAML2/POST-SimpleSign" index="2"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact" Location="https://uit.stanford.edu/Shibboleth.sso/SAML2/Artifact" index="3"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:PAOS" Location="https://uit.stanford.edu/Shibboleth.sso/SAML2/ECP" index="4"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:browser-post" Location="https://uit.stanford.edu/Shibboleth.sso/SAML/POST" index="5"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:1.0:profiles:artifact-01" Location="https://uit.stanford.edu/Shibboleth.sso/SAML/Artifact" index="6"/>
+  </md:SPSSODescriptor>
+
+</md:EntityDescriptor>

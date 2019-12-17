@@ -1,0 +1,38 @@
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" ID="_724200788f8391f96053f72adc628fecc808d09a" entityID="nssp.example.com">
+
+   <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:1.0:protocol">
+    <md:Extensions>
+      <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://nssp.example.com/Shibboleth.sso/Login"/>
+      <idpdisc:DiscoveryResponse xmlns:idpdisc="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Binding="urn:oasis:names:tc:SAML:profiles:SSO:idp-discovery-protocol" Location="https://nssp.example.com/Shibboleth.sso/Login" index="1"/>
+      <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://nssp.example.com/Shibboleth.sso/Login"/>
+    </md:Extensions>
+    <md:KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:KeyName>nssp.example.com</ds:KeyName>
+        <ds:X509Data>
+<ds:X509SubjectName>CN=nssp.example.com</ds:X509SubjectName>
+<ds:X509Certificate>MIIDEjCCAfqgAwIBAgIJAN+3kso4SfnwMA0GCSqGSIb3DQEBBQUAMCQxIjAgBgNV
+BAMTGWl0c2VydmljZXMwMS5zdGFuZm9yZC5lZHUwHhcNMTgwNDEzMjExMDE4WhcN
+MjgwNDEwMjExMDE4WjAkMSIwIAYDVQQDExlpdHNlcnZpY2VzMDEuc3RhbmZvcmQu
+ZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArWbW+SzvuWTnXqKK
+PuefHD89rXuEh9oYHWMtY/v4m90yUbOfe5kPJBYidBUhjhZQU0jSB1QdWIDvPHBV
+EqStBquthUYHfPdD1q0ej8l1RmFTYqFiz3QR2wFTFWI0L+CTUwLtneH+mZzdckfl
+DPzw95Pt16w2oBsyl/GWDJFv0eIhkEuNg/E6W4XJcHcgse36TUPt3uBpB8X/zoQa
+l4HNz4pfSdZhPr1Ltq6WLTSa3EcdxtGdr7yAkVhvPaaGd163NRJBLjhzQB8fVnFM
+nhrqiXR6rrbRZskwlGcEeqdhkhneQYl015Tqqa3Xi7wdqV2lzd1LT0InoJakJtMH
+1g2YHQIDAQABo0cwRTAkBgNVHREEHTAbghlpdHNlcnZpY2VzMDEuc3RhbmZvcmQu
+ZWR1MB0GA1UdDgQWBBRweHFUF7fF6QG9CjYb21XgPPCE/zANBgkqhkiG9w0BAQUF
+AAOCAQEABpK18QnMwNi2kBdFfa1+tNg4O+ovJazsBUKe5Ud9opHvNk8/DCfq4zig
+iggquUcLGrr4ubxcQIqvLHQHGbai5866NmjJTUsg+yL8N7zjsVW5qw3NR/j9lr3O
+kmC97AsR9MRBB7uHy16RSCHIoQrgbD/O4PL6OshMSZI+c5EPNCGDCXeIV492kELR
+W3wWFiCh5WBPfvNW6QrlzmLPKR2OpZ4QaKIWpm6lcMdlU2xSTbtAXfB4vTkU8+z/
+jP1mc95u82BsCS6zlc3U7J+ldGIyONtGaHMJ8x2ChVYTmNWIb1xnxYzLBQR6LVNb
+cb9cEGuRsUQNZ3VAHdsDWRfdgbJIpQ==
+</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://nssp.example.com/cgi/samlauth" index="0"/>
+ </md:SPSSODescriptor>
+
+</md:EntityDescriptor>
