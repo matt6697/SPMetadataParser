@@ -1,22 +1,82 @@
-# SPMetadataParser
+# SPMetadataAPI
+## Introduction
+SPMetadataAPI is a SAML2 federation operator webservice based on API Platform and LightSAML PHP library:
+ * Providing SAML2 **metadata registration** capabilities.
+ * Validating SAML2 metadata structure using LightSAML parser.
+ * Acting a SAML2 **metadata aggregator** HTTP server for Shibboleth identity providers.
 
-## Shibboleth 2 documentation
-### Type of Relying Parties
-In nearly all cases an IdP communicates with a service provider. However, in some more advanced cases an IdP may communicate with other entities (like other IdPs). The IdP configuration uses the generic term relying party to describe any peer with which it communicates. A service provider, then, is simply the most common type of relying party.
+ ![SAML2 service provider registration](doc/images/metadataoperator.jpg)
 
-The IdP recognizes three classifications of relying parties:
-  - **anonymous** - a relying party for which the IdP has no metadata
-  - **default** - a relying party for which the IdP does have metadata but for which there is no specific configuration
-  - **specified** - a relying party for which the IdP has metadata and a specific configuration
+ * [Webservice architecture](/doc/architecture.md)
+ * [Shibboleth integration](doc/shibboleth.md)
 
-  The configuration for each type of relying party is given by their respective configuration elements: `<AnonymousRelyingParty>`, `<DefaultRelyingParty>`, and `<RelyingParty>`.
+## Getting started
+### Installation
+Clone the git repository and run `composer install`.
 
-### Metadata and Relying Parties
-The IdP uses metadata to drive a significant portion of its internal communication logic with a relying party. The metadata contains information such as what keys to use, whether certain information needs to be digitally signed, which protocols are supported, etc. A relying party is identified within metadata by an <EntityDescriptor> element with an entityID attribute whose value corresponds to the relying party's entity ID. Entities may be grouped within an <EntitiesDescriptor> element and this group may be given a name by means of the name attribute. Entity groups may be nested.
+As the project is based on **Api Platform** and **Symfony 4**, additionnal PHP modules might be required by composer (curl, mbstring, xml,...). Install the required PHP modules and run `composer install` again.
 
-When creating a specified relying party configuration you may specify either a specific entity or a group of entities. In that event that there is overlap the most specific configuration is used, no settings are "inherited" because of this overlap. As was mentioned above, a relying party for which the IdP can find no metadata is termed an anonymous relying party.
+### Database configuration
+SPMetadataParser supports multiple database backends :
+ - SQlite
+ - MySql
 
-https://wiki.shibboleth.net/confluence/display/SHIB2/IdPUnderstandingRP
+Install the choosen PHP database module and configure database URL as an environment variable :
+  * Configure the `.env` file for a standalone web-server deployment.
+  * Use Docker environment variables for a containairized deployment.
+
+SPMetadataParser is configured by default to use a SQlite database stored in `%kernel.project_dir%/var/metadata.db`.
+
+```
+DATABASE_URL=sqlite:///%kernel.project_dir%/var/metadata.db  
+```
+
+Initialize the database structure with symfony console before starting the web server.
+
+```
+$ bin/console doctrine:database:create
+$ bin/console doctrine:schema:create
+```
+
+### Administrative actions
+#### Clear the API Platform cache
+The Api Platform cache can be cleared using the following Symfony 4 console command :
+```
+php bin/console cache:clear
+```
+
+## API Usage
+### Registering a Shibboleth Service Provider
+The **FQDN** of the Shibboleth Service Provider Metadata endpoint is used for registration. Webservice will automatically construct the URL of the Shibboleth Service Provider metadata endpoint `https://<FQDN>/Shibboleth.sso/Metadata`
+
+```
+curl -X POST "http://<webservice>/api/service_providers" \
+     -H  "accept: application/ld+json" \
+     -H  "Content-Type: application/ld+json" \
+     -d "{\"shibboleth_host\":\"itservices01.stanford.edu\"}"
+```
+
+### Registering a Non-Shibboleth SAML2 Service Provider
+The **URL** of the SAML2 Service Provider Metadata endpoint is used for registration.
+This URL may vary depending on the SAML2 service provider technology.
+
+```
+curl -X POST "https://<webservice>/api/service_providers" \
+     -H  "accept: application/ld+json" \
+     -H  "Content-Type: application/ld+json" \
+     -d "{\"metadata_url\":\"https://itservices01.stanford.edu/Shibboleth.sso/Metadata\"}"
+```
+
+### Backward compatibility registration using GET HTTP request
+Shibboleth-only service providers can be registered using the **/shib?sp=<fqdn>** API endpoint. This API endpoint is *deprecated** and has been included for backward compatibility only. It will be removed in the next major release.
+```
+curl https://<webservice>/api/shib?sp=itservices01.stanford.edu
+```
 
 
-## Webservice architecture
+### Gathering the EntitiesDescriptors aggregated XML metadata container
+Aggregated SAML2 Metadata is provided to the Shibboleth IDP accessing the webservice using a [FileBackedHTTPMetadataProvider](shibboleth.md) through the `GET /entities_descriptors` API endpoint.
+
+```
+curl https://<webservice>/api/entities_descriptors
+```
