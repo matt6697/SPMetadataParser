@@ -1,5 +1,5 @@
 {
-    "name": "SPMetadataAPI",
+    "name": "saml2/sp-metadata-api",
     "description": "SAML2 service provider metadata registration API for a Shibboleth federation",
     "type": "project",
     "license": "proprietary",
