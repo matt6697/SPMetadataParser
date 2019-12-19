@@ -1,4 +1,6 @@
 {
+    "name": "SPMetadataAPI",
+    "description": "SAML2 service provider metadata registration API for a Shibboleth federation",
     "type": "project",
     "license": "proprietary",
     "require": {
@@ -53,7 +55,8 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "test": "vendor/bin/simple-phpunit"
     },
     "conflict": {
         "symfony/symfony": "*"
